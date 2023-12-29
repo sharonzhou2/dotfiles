@@ -10,9 +10,9 @@ if not mason_lspconfig_status then
 	return
 end
 
--- import mason-null-ls plugin safely
-local mason_null_ls_status, mason_null_ls = pcall(require, "mason-null-ls")
-if not mason_null_ls_status then
+-- import mason-tool-installer plugin safely
+local mason_tool_installer_status, mason_tool_installer = pcall(require, "mason-tool-installer")
+if not mason_tool_installer_status then
 	return
 end
 
@@ -35,16 +35,13 @@ mason_lspconfig.setup({
 	automatic_installation = true, -- not the same as ensure_installed
 })
 
-mason_null_ls.setup({
-	-- list of formatters & linters for mason to install
+mason_tool_installer.setup({
 	ensure_installed = {
-		"prettier", -- ts/js formatter
+		"prettier", -- prettier formatter
 		"stylua", -- lua formatter
-		"eslint_d", -- ts/js linter
-		"mypy", -- python linter / static type check
-		"ruff", -- python linter
-		"black", -- python autoformatter
+		"isort", -- python formatter
+		"black", -- python formatter
+		"pylint", -- python linter
+		"eslint_d", -- js linter
 	},
-	-- auto-install configured formatters & linters (with null-ls)
-	automatic_installation = true,
 })

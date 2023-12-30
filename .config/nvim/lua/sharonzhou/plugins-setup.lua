@@ -114,8 +114,11 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 	use("tpope/vim-fugitive")
 
-    -- github copilot
-    use("github/copilot.vim")
+	-- github copilot
+	-- use("github/copilot.vim")
+
+	-- Github copilot alternative
+	use("Exafunction/codeium.vim")
 
 	if packer_bootstrap then
 		require("packer").sync()

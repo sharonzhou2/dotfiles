@@ -47,6 +47,9 @@ return packer.startup(function(use)
 	-- commenting with gc
 	use("numToStr/Comment.nvim")
 
+	-- ts context commenting
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+
 	-- file explorer
 	use("nvim-tree/nvim-tree.lua")
 
@@ -74,6 +77,14 @@ return packer.startup(function(use)
 	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
 	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 	use("WhoIsSethDaniel/mason-tool-installer") -- briges gap b/w mason & formatter and linter instalation
+
+	use({
+		"nvimdev/lspsaga.nvim",
+		after = "nvim-lspconfig",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+	})
 	-- manage formatters
 	use({
 		"stevearc/conform.nvim",
@@ -86,14 +97,7 @@ return packer.startup(function(use)
 	-- configuring lsp servers
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use({
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		requires = {
-			{ "nvim-tree/nvim-web-devicons" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-	}) -- enhanced lsp uis
+
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
@@ -119,6 +123,7 @@ return packer.startup(function(use)
 
 	-- Github copilot alternative
 	use("Exafunction/codeium.vim")
+	use("sindrets/diffview.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
